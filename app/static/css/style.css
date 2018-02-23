@@ -72,6 +72,10 @@ html {
   color: #337AF0;
 }
 
+a.logo_image {
+    padding: 10px 16px;
+}
+
 a.logo_image:hover {
     background-color: #fff;
 }
