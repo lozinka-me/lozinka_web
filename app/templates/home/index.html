@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Početna - lozinka.me
+{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <h3>Provjerite jačinu lozinke i povećajte nivo svoje sigurnosti</h3>
+                <p>Provjerite karakteristike lozinke</p>
+                <p>Da li se lozinka nalazi u <b>listi najčešće korištenih lozinki</b>?</p>
+                <p>Koliko je vremena potrebno računaru da otkrije lozinku?</p>
+                <a href="{{ url_for('home.lozinka') }}" class="button button-primary">Provjeri jačinu lozinke</a>
+            </div>
+        </div>
+    </div>
+    <div class="section grey">
+        <div class="row">
+            <div class="four columns feature">
+                <img src="/static/images/features/git.svg" width="50px">
+                <h5>Open Source</h5>
+                <p>Izvorni kod ovog sajta je javno dostupan i svako ga može pregledati.</p>
+                <a href="{{ url_for('home.page', link='open-source') }}">Detaljnije</a>
+            </div>
+
+            <div class="four columns feature">
+                <img src="/static/images/features/shield.svg" width="50px">
+                <h5>Sigurno</h5>
+                <p>Svaka vrsta razmjene informacija između korisnika i sajta je enkriptovana.</p>
+                <a href="{{ url_for('home.page', link='sigurnost') }}">Detaljnije</a>
+            </div>
+            <div class="four columns feature">
+                <img src="/static/images/features/anon.svg" width="50px">
+                <h5>Anonimno</h5>
+                <p>Ovaj sajt ne prikuplja nikakve podatke koji bi mogli da dovedu do identifikacije korisnika.</p>
+                <a href="{{ url_for('home.page', link='privatnost') }}">Detaljnije</a>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="statistics">
+                    <h4>Do sada je provjereno <span class="num">{{ num_checks }}</span> lozinki</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

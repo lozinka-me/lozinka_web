@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ page.title }} - lozinka.me
+{% endblock %}
+
+{% block body %}
+    <div class="page min-height">
+        <div class="container">
+            <div class="row">
+                {{ page.content|safe }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,230 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Jačina lozinke - lozinka.me
+{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <div class="container">
+            <div class="row form-content">
+                <div class="eight columns offset-by-two">
+                    {% if form.errors %}
+                        <ul class="error-messages">
+                            {% for field, error in form.errors.items() %}
+                                {% for e in error %}
+                                    <li class="error">{{ e }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                        <br/>
+                    {% endif %}
+                    <form method="POST">
+                        {{ form.csrf_token }}
+                        <div class="row">
+                            <label for="password">Lozinka</label>
+                            {{ form.password(class="u-full-width") }}
+                        </div>
+                        <div class="row">
+                            <input class="button-primary" type="submit" value="Provjeri">
+                        </div>
+                    </form>
+                    <br/>
+                    {% if result %}
+                    <h5><b>Rezultat</b></h5>
+                    <hr/>
+                    <br>
+                    <h5>Svojstva lozinke</h5>
+                        <div class="row">
+                            <table class="u-full-width">
+                                <thead>
+                                    <tr>
+                                        <th>Svojstvo</th>
+                                        <th>Vrijednost</th>
+                                        <th>Komentar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Dužina lozinke</td>
+                                        <td>{{ result['length'] }}</td>
+                                        <td>
+                                            {% if result['length'] >= 8 %}
+                                                <b class="text-success">U redu</b>
+                                            {% else %}
+                                                <b class="text-error">Prekratka</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cifre</td>
+                                        <td>{{ result['digits'] }}</td>
+                                        <td>
+                                            {% if result['digits'] > 0 %}
+                                                <b class="text-success">Sadrži</b>
+                                            {% else %}
+                                                <b class="text-error">Ne sadrži</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slova</td>
+                                        <td>{{ result['letters'] }}</td>
+                                        <td>
+                                            {% if result['letters'] > 0 %}
+                                                <b class="text-success">Sadrži</b>
+                                            {% else %}
+                                                <b class="text-error">Ne sadrži</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Velika slova</td>
+                                        <td>{{ result['uppercase'] }}</td>
+                                        <td>
+                                            {% if result['uppercase'] > 0 %}
+                                                <b class="text-success">Sadrži</b>
+                                            {% else %}
+                                                <b class="text-error">Ne sadrži</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mala slova</td>
+                                        <td>{{ result['lowercase'] }}</td>
+                                        <td>
+                                            {% if result['lowercase'] > 0 %}
+                                                <b class="text-success">Sadrži</b>
+                                            {% else %}
+                                                <b class="text-error">Ne sadrži</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Simboli</td>
+                                        <td>{{ result['symbols'] }}</td>
+                                        <td>
+                                            {% if result['symbols'] > 0 %}
+                                                <b class="text-success">Sadrži</b>
+                                            {% else %}
+                                                <b class="text-error">Ne sadrži</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <br>
+                            <h5>Vrijeme potrebno računaru da otkrije lozinku</h5>
+                            <table class="u-full-width">
+                                <thead>
+                                    <tr>
+                                        <th class="w-50">Vrsta</th>
+                                        <th class="w-50">Vrijeme</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td >Offline (100 pokušaja po sekundi)</td>
+                                        <td>{{ time_string.offline_time_1 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Offline (200 000 pokušaja po sekundi)</td>
+                                        <td>{{ time_string.offline_time_2 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Online (100 pokušaja po satu)</td>
+                                        <td>{{ time_string.online_time_1 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Online (10 pokušaja po sekundi)</td>
+                                        <td>{{ time_string.online_time_2 }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <br>
+                            <h5>Lista najčešće korištenih lozinki</h5>
+                            <table class="u-full-width">
+                                <thead>
+                                    <tr>
+                                        <th>Lista</th>
+                                        <th>Rezultat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   <tr>
+                                       <td>Top 100 000</td>
+                                       <td>
+                                            {% if result['position'] <= 100000 and result['position'] != 0 %}
+                                                <b class="text-error">Da</b>
+                                            {% else %}
+                                                <b class="text-success">Ne</b>
+                                            {% endif %}
+                                        </td>
+                                   </tr>
+                                    <tr>
+                                       <td>Top 10 000</td>
+                                       <td>
+                                            {% if result['position'] <= 10000 and result['position'] != 0 %}
+                                                <b class="text-error">Da</b>
+                                            {% else %}
+                                                <b class="text-success">Ne</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                       <td>Top 1000</td>
+                                       <td>
+                                            {% if result['position'] <= 1000 and result['position'] != 0 %}
+                                                <b class="text-error">Da</b>
+                                            {% else %}
+                                                <b class="text-success">Ne</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                       <td>Top 500</td>
+                                       <td>
+                                            {% if result['position'] <= 500 and result['position'] != 0 %}
+                                                <b class="text-error">Da</b>
+                                            {% else %}
+                                                <b class="text-success">Ne</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                       <td>Top 100</td>
+                                       <td>
+                                            {% if result['position'] <= 100 and result['position'] != 0 %}
+                                                <b class="text-error">Da</b>
+                                            {% else %}
+                                                <b class="text-success">Ne</b>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <div class="password-score">
+                                <h5>Ocjena lozinke (0-4)</h5>
+                                {% if result['score'] == 0 %}
+                                    <h5 class="text-error"><b>0</b></h5>
+                                {% elif result['score'] == 1 %}
+                                    <h5 class="text-error"><b>1</b></h5>
+                                {% elif result['score'] == 2 %}
+                                    <h5 class="text-primary"><b>2</b></h5>
+                                {% elif result['score'] == 3 %}
+                                    <h5 class="text-success"><b>3</b></h5>
+                                {% elif result['score'] == 4 %}
+                                    <h5 class="text-success"><b>4</b></h5>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

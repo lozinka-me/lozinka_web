@@ -1,0 +1,20 @@
+CREATE TABLE `result` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date_created` datetime DEFAULT NULL,
+  `date_modified` datetime DEFAULT NULL,
+  `password` varchar(256) DEFAULT NULL,
+  `length` smallint(6) DEFAULT NULL,
+  `letters` smallint(6) DEFAULT NULL,
+  `digits` smallint(6) DEFAULT NULL,
+  `uppercase` smallint(6) DEFAULT NULL,
+  `lowercase` smallint(6) DEFAULT NULL,
+  `symbols` smallint(6) DEFAULT NULL,
+  `position` int(11) DEFAULT NULL,
+  `guesses` varchar(256) DEFAULT NULL,
+  `score` smallint(6) DEFAULT NULL,
+  `online_time_1` varchar(256) DEFAULT NULL,
+  `online_time_2` varchar(256) DEFAULT NULL,
+  `offline_time_1` varchar(256) DEFAULT NULL,
+  `offline_time_2` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

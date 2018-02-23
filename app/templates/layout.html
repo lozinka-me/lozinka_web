@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="/static/css/normalize.css">
+  <link rel="stylesheet" href="/static/css/skeleton.css">
+  <link rel="stylesheet" href="/static/css/style.css?v=1">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="row">
+         <div class="topnav" id="topnav">
+             <div class="container">
+                  <a href="{{ url_for('home.home') }}" class="logo_image"><img src="/static/images/logo.png" width="150px"></a>
+                  <a href="{{ url_for('home.home') }} ">Početna</a>
+                  <a href="{{ url_for('home.lozinka') }}">Provjeri jačinu lozinke</a>
+                  <a href="{{ url_for('home.page', link='sta-je-lozinka-me') }}">Šta je lozinka.me?</a>
+                  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="navigation()">&#9776;</a>
+             </div>
+        </div>
+    </div>
+
+  {% block body %} {% endblock %}
+
+  <div class="section grey">
+    <div class="container">
+        <div class="ten columns offset-by-one">
+            <div class="six columns">
+                <ul style="list-style-type: none;">
+                    <li><a href="{{ url_for('home.page', link='sta-je-lozinka-me') }}">Šta je lozinka.me?</a></li>
+                    <li><a href="{{ url_for('home.page', link='open-source') }}">Open source</a></li>
+                </ul>
+            </div>
+            <div class="six columns">
+                <ul style="list-style-type: none;">
+                    <li><a href="{{ url_for('home.page', link='privatnost') }}">Privatnost</a></li>
+                    <li><a href="{{ url_for('home.page', link='sigurnost') }}">Sigurnost</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script>
+        function navigation() {
+            var x = document.getElementById("topnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+   </script>
+</body>
+</html>
