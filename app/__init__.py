@@ -15,7 +15,7 @@ from logging.handlers import RotatingFileHandler
 app = Flask(__name__)
 
 # Ucitaj konfiguracije iz fajla config.py
-app.config.from_object('config')
+app.config.from_object('config_local')
 
 # Session
 Session(app)
