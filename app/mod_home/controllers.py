@@ -30,7 +30,7 @@ def lozinka():
         password_data = Password(password=form.password.data)
         db.session.add(password_data)
 
-        result = Result.query.filter_by(password=form.password.data).first()
+        result = db.engine.execute("SELECT * FROM `result` WHERE BINARY `password` = '%s'" % form.password.data).first()
 
         if not result:
             strength = password.password_strength(form.password.data)
