@@ -82,6 +82,7 @@ a.logo_image:hover {
 
 .topnav .icon {
   display: none;
+  font-size:15px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -144,4 +145,8 @@ a {
 a img {
     display: inline-block;
     vertical-align: middle;
+}
+
+.footer-list {
+    list-style-type: none;
 }

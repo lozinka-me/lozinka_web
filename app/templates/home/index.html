@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Početna - lozinka.me
+    lozinka.me
 {% endblock %}
 
 {% block body %}
@@ -19,23 +19,23 @@
     <div class="section grey">
         <div class="row">
             <div class="four columns feature">
-                <img src="/static/images/icons/git.svg" width="50px">
+                <img src="/static/images/icons/git.svg" width="50px" alt="Open source">
                 <h5>Open Source</h5>
                 <p>Izvorni kod ovog sajta je javno dostupan i svako ga može pregledati.</p>
-                <a href="{{ url_for('home.page', link='open-source') }}">Detaljnije <img src="/static/images/icons/external-link.svg" height="15px"></a>
+                <a href="{{ url_for('home.page', link='open-source') }}">Detaljnije <img src="/static/images/icons/external-link.svg" height="15px" alt="Detaljnije"></a>
             </div>
 
             <div class="four columns feature">
-                <img src="/static/images/icons/shield.svg" width="50px">
+                <img src="/static/images/icons/shield.svg" width="50px" alt="Sigurno">
                 <h5>Sigurno</h5>
                 <p>Svaka vrsta razmjene informacija između korisnika i sajta je enkriptovana.</p>
-                <a href="{{ url_for('home.page', link='sigurnost') }}">Detaljnije <img src="/static/images/icons/external-link.svg" height="15px"></a>
+                <a href="{{ url_for('home.page', link='sigurnost') }}">Detaljnije <img src="/static/images/icons/external-link.svg" height="15px" alt="Detaljnije"></a>
             </div>
             <div class="four columns feature">
-                <img src="/static/images/icons/anon.svg" width="50px">
+                <img src="{{ config.SITE_URL }}/static/images/icons/anon.svg" width="50px" alt="Anonimno">
                 <h5>Anonimno</h5>
                 <p>Ovaj sajt ne prikuplja nikakve podatke koji bi mogli da dovedu do identifikacije korisnika.</p>
-                <a href="{{ url_for('home.page', link='privatnost') }}">Detaljnije <img src="/static/images/icons/external-link.svg" height="15px"></a>
+                <a href="{{ config.SITE_URL }}{{ url_for('home.page', link='privatnost') }}">Detaljnije <img src="/static/images/icons/external-link.svg" height="15px" alt="Detaljnije"></a>
             </div>
         </div>
     </div>
